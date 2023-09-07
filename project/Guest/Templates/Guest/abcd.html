@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #pagination {
+  margin-top: 10px;
+}
+
+#pagination button {
+  padding: 5px 10px;
+  margin-right: 5px;
+}
+
+#pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+    </style>
+</head>
+<body>
+    <div id="product-container">
+        <!-- Products will be dynamically added here -->
+      </div>
+      
+      <div id="pagination">
+        <button id="prev-button" disabled>Prev</button>
+        <button id="next-button">Next</button>
+      </div>
+</body>
+</html>

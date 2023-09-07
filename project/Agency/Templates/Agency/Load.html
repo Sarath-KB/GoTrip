@@ -1,0 +1,46 @@
+{% load static %}
+
+{% for i in obj %}
+
+{% if i.to_agency.id == sid %}
+
+<div class="chat-message is-received">
+    <!-- image -->
+    <img class="user-avatar" src="{{i.from_user.user_photo.url}}" alt="">
+    <div class="message-block">
+        <span>
+
+            {{i.from_user.user_name}}
+        </span>
+        <div class="message-text">
+            {{i.content}}
+        </div>
+    </div>
+</div>
+<div class="chat-message" style="margin: 0px; padding: 0px">
+
+</div>
+{% endif %}
+
+<!-- send -->
+
+
+{% if i.from_agency.id == sid %}
+
+<div class="chat-message is-sent">
+    <!-- img -->
+    <img class="user-avatar" src="{{i.from_agency.agency_ownerproof.url}}" alt="">
+    <div class="message-block">
+        <span>
+            {{i.from_agency.agency_name}}
+        </span>
+        <div class="message-text">
+            {{i.content}}
+        </div>
+    </div>
+</div>
+<div class="chat-message" style="margin: 0px; padding: 0px">
+
+</div>
+{% endif %}
+{% endfor %}

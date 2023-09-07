@@ -1,0 +1,74 @@
+
+{% extends 'Admin/Head.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'Agency/assets/css/tablestyle.css' %}">
+</head>
+<br><br><center><h2>Package Report</h2></center>
+<br><br>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table align="center">
+            <tr>
+                <td>From date</td>
+                <td><input type="date" name="fdate" id="" required=""></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>To date</td>
+                <td><input type="date" name="tdate" id="" required=""></td>
+            </tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr>
+                <td colspan="8" align="center">
+                    <input type="submit" value="Get Report"> <p>*Note that the reports are based only on the bookings of package</p>
+
+                </td>
+            </tr>
+        </table>
+    
+{% if COUNT > 0 %}
+
+<center>
+    <h4 style="align-items: center;"> Total Profit Earned =Rs. {{TOTAL}}</h4>
+    <h4 style="align-items: center;"> Total Number of Bookings ={{COUNT}}</h4>
+</center>
+    <table border="1" class="booking-table" align="center">
+        <tr>
+            <th>Sl.No</th>
+            <th>Agency Name</th>
+            <th>Package Name</th>
+            <th>TOTAL AMOUNT</th>
+            <th>Booking Amount</th>
+            <th>My Earnings</th>
+            <th>Date of Payment</th>
+        </tr>
+        {% for i in DATA %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.pbooking.package.agency.agency_name}}</td>
+            <td>{{i.pbooking.package.package_name}}</td>
+            <td>{{i.pbooking.package.package_price}}</td>
+            <td>{{i.payement_amount}}</td>
+            <td>{{i.host_profit}}</td>
+            <td>{{i.payement_date}}</td>
+            
+
+        </tr>
+        {% endfor  %}
+    </table>
+    
+{% elif COUNT <  0 %}
+<center>
+<p>No Bookings in the specified date</p>
+<p>Plese Choose another dates</p>
+<p>Thank You!!!</p>
+{% endif %}
+</center>
+</form>
+{% endblock content %}

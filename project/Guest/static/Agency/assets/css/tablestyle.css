@@ -1,0 +1,77 @@
+
+    .badge {
+      display: flex;
+      position: absolute;
+      top: 32px;
+      right: 0px;
+      left: 10px;
+      background-color: red;
+      color: white;
+      font-size: 12px;
+      padding: 2px;
+      width: 15px;
+      border-radius: 50%;
+      height: 15px;
+      align-items: center;
+      justify-content: center;
+    }
+    /* General table styles */
+.booking-table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 800px; /* Set your desired maximum width */
+  margin: 20px auto; /* Add some margin for better visual appearance */
+}
+
+/* Table header styles */
+.booking-table th {
+  background-color:  #08bdd4;
+  padding: 10px;
+  font-weight: bold;
+  text-align: left;
+  border-bottom: 1px solid #08bdd4;
+}
+
+/* Table row styles */
+.booking-table td {
+  padding: 10px;
+  border-bottom: 1px solid #d8caca;
+}
+
+/* Alternate row background color */
+.booking-table tr:nth-child(even) {
+  background-color: #d1b4b4;
+}
+
+/* Hover effect on rows */
+.booking-table tr:hover {
+  background-color: #d4bcbc;
+}
+
+/* Styles for the "Status" column */
+.booking-table td:nth-child(4) {
+  font-weight: bold;
+}
+
+/* Styles for the "Status of journey" column */
+.booking-table td:nth-child(5) {
+  text-align: center;
+}
+
+/* Styles for the links in the "Status of journey" column */
+.booking-table td:nth-child(5) a {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+/* Styles for the "Waiting for the payment" paragraph */
+.booking-table td:nth-child(5) p {
+  font-style: italic;
+  margin: 0;
+  padding: 5px;
+  background-color: #ba1515;
+}

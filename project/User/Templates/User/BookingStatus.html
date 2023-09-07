@@ -1,0 +1,75 @@
+{% extends 'User/Head.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'Agency/assets/css/tablestyle.css' %}">
+</head>
+<br><br>
+<center><p><h2><b>My Travel Package Bookings</b></h2></p></center><br>
+    <table border="1" align="center" class="booking-table">
+        <tr>
+            <th>Package Name</th>
+            <th>Package Locations</th>
+            <th>Package Rate</th>
+            <th>Booking Amount</th>
+            <th>Booking Date</th>
+            <th>Date of Travel</th>
+            <th>Total No.of Peope</th>
+            <th>Agency Name</th>
+            <th>Agency Contact</th>
+            <th>STAUS</th>
+            <th>Action</th>
+        </tr>
+        {% for i,j in DATA %}
+       
+        
+        
+        
+        <tr>
+            <td>{{i.package.package_name}}</td>
+            <td>{{i.package.package_locations}}</td>
+            <td>{{i.package.package_price}}</td>
+            <td>{{i.pbooking_amount}}</td>
+            <td>{{i.pbooking_date}}</td>
+            <td>{{i.pbooking_fordate}}</td>
+            <td>{{i.ppassengers}}</td>
+            <td>{{i.package.agency.agency_name}}</td>
+            <td>{{i.package.agency.agency_contact}}</td>
+            <td>{% if i.pbooking_status == 1 %}
+                <p>Approved</p>
+                <p><a href="{% url 'User:payment' i.id %}" style="color: blue;">Pay Now</a></p>
+                {% elif i.pbooking_status == 2 %}
+                <p>rejected</p> 
+                {% elif i.pbooking_status == 3 %}
+                <p>Paid</p>
+                {% elif i.pbooking_status == 0 %}
+                <p>Pending</p>
+                {% endif %}
+            </td>
+            <td>{% if i.pbooking_status == 0 or i.pbooking_status == 1 %}
+            <a href="{% url 'User:cancelbooking' i.id %}" style="color: blue;">Cancel Booking</a>
+            {% endif %}
+            
+            
+            
+            {% if i.pbooking_status == 3 and j > 5 %}
+            <a href="{% url 'User:cancelbookingrefund' i.id %}" style="color: blue;">Cancel Booking</a>
+            {% endif %}
+            
+            
+        </td>
+        </tr>
+        
+        {% endfor %}
+    </table>
+
+    <br><br><br><br><br><br><br><br>
+    
+
+    {% endblock %}
+
+    <script>
+        {% if msg %}
+        alert("{{msg}}")
+        {% endif %}
+    </script>

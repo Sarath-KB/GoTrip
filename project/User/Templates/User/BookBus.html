@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .retro{
+            font-family: 'IBM Plex Mono';
+            font-weight: 700;
+            text-transform: uppercase;
+            
+
+            background-color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 0.25em;
+            border: solid 0.125rem #121212;
+            box-shadow: 0.25rem 0.25rem #121212;
+
+            transition: 
+                transform 50ms,box-shadow 50ms;
+        }
+        .retro:active{
+            transform:translate(0.125rem,0.125rem);
+            box-shadow:0.125rem 0.125rem #121212;
+        }
+    </style>
+</head>
+<body>
+    <form action="" method="post" id="bookbus" data-book-url="{% url 'User:burl' %}">
+        {% csrf_token %}
+        <table border="0" align="center" cellpaddding="10" style="border-collapse: collapse;">
+            <tr>
+                <td><img src="{{BUS.bus_image.url}}" alt="img" width="120px" height="120px"></td>
+            </tr>
+            <tr>
+                <td>Agency Name:</td>
+                <td>{{BUS.agency.agency_name}}</td>
+            </tr>
+            <tr>
+                <td>Reg No:</td>
+                <td>{{BUS.bus_regno}}</td>
+            </tr>
+            <tr>
+                <td>Bus Type</td>
+                <td>{{BUS.bus_type}}</td>
+            </tr>
+            <tr>
+                <td>Seat Capacity</td>
+                <td>{{BUS.bus_seatcapacity}}</td>
+            </tr>
+            <tr>
+                <td>Start Date</td>
+                <td>
+                    <input type="date" name="fdate" id='txtDate' required="" autocomplete="off" placeholder="select travel start date">
+                </td>
+            </tr>
+           <tr>
+            <td>End Date</td>
+            <td>
+                <input type="date" name="tdate" id="txtedate" required="" autocomplete="off" placeholder="select travel end date">
+            </td>
+           </tr>
+           <tr>
+                <td>From:</td>
+                <td>
+                    <input type="text" name="fplace" id="ft" required="" autocomplete="off" placeholder="from location">
+                </td>
+           </tr>
+           <tr>
+                <td>To:</td>
+                <td>
+                    <input type="text" name="tplace" id="tt" required="" autocomplete="off" placeholder="destination">
+                </td>
+           </tr>
+           <tr>
+            <td>Number of passengers</td>
+            <td>
+                <input type="number" name="npass" id="nn" required="" autocomplete="off" placeholder="Number of passengers" min="10" max="{{BUS.bus_seatcapacity}}" width="70%">
+            </td>
+           </tr>
+           <tr>
+            <td>Purpose</td>
+            <td>
+                <input type="text" name="txtPur" id="pur" required="" autocomplete="off" placeholder="eg:marriage">
+                <input type="hidden" name="txtid" id="txtid" required="" value="{{BUS.id}}">
+            </td>
+           </tr>
+           <tr></tr><tr></tr>
+           <tr>
+            <td colspan="2" align="center">
+               <input type="button" value="BOOK" class="retro" id="retro">
+               <input type="reset" value="CANCEL" class="retro">
+            </td>
+           </tr>
+        </table>
+    </form>   
+</body>
+</html>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        console.log("haii")
+        var dtToday = new Date();
+
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+
+        var maxDate = year + '-' + month + '-' + day;
+
+
+        console.log(maxDate);
+        $('#txtDate').attr('min', maxDate);
+    });
+
+    $("#retro").click(function () {
+            var bid=document.getElementById("txtid").value;
+            var fdate=document.getElementById("txtDate").value;
+            var edate=document.getElementById("txtedate").value;
+            var ftime=document.getElementById("ft").value;
+            var eloc=document.getElementById("tt").value;
+            var nn=document.getElementById("nn").value;
+            var pur=document.getElementById("pur").value;
+            var ur = $("#bookbus").attr("data-book-url");
+            $.ajax({
+                url: ur,
+                data: { bid: bid,fdate:fdate,edate:edate,ftime:ftime,eloc:eloc,nn:nn,pur:pur },
+                success: function (data) {
+                    alert("Booking completed")
+                    window.location="../../user/searchbus/"
+                },
+            });
+        });
+</script>

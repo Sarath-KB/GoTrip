@@ -1,0 +1,45 @@
+{% extends 'Admin/Head.html' %}
+{% load static %}
+{% block content %}
+<style>
+    a{
+        text-decoration: none;
+        color: brown;
+    }
+</style>
+<br><br>
+    {% if AGENCY %}
+    <center><h2>AGENCY REJECTED LIST</h2></center><br>
+    <table border="1">
+        <tr>
+            <th>Sl No.</th>
+            <th>Agency Name</th>
+            <th>Owner Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>District</th>
+            <th>Place</th>
+            <th>Owner ID Proof</th>
+            <th>License Proof</th>
+            <th>Verify</th>
+        </tr>
+        {% for i in AGENCY %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.agency_name}}</td>
+            <td>{{i.agency_ownername}}</td>
+            <td>{{i.agency_email}}</td>
+            <td>{{i.agency_address}}</td>
+            <td>{{i.place.district.district_name}}</td>
+            <td>{{i.place.place_name}}</td>
+            <td><a href="{{i.agency_ownerproof.url}}" download=""> download</a></td>
+            <td><a href="{{i.agency_license.url}}" download> download</a></td>
+            <td><a href="{% url 'Admin:agencyaccept' i.id %}">Accept</a></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <h3><b>Empty Rejected List</b></h3>
+    {% endif %}
+    {% endblock content %}

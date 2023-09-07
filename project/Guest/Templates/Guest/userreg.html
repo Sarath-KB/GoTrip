@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center><h1><b>Register Here</b></h1></center>
+    <form action="" method="post" enctype="multipart/form-data" id="UserForm" data-places-url="{% url 'Guest:Ajax_Place' %}">
+        {% csrf_token %}
+        <table border="1" align="center">
+        <tr>
+            <td>Name</td>
+            <td><input type="text" name="txtName" id="" autocomplete="off" placeholder="Enter Your Name" required=""></td>
+        </tr>
+        <tr>
+            <td>Contact</td>
+            <td><input type="text" name="txtPhno" id="" autocomplete="off" placeholder="10 digit phone number" pattern="[0-9]{10}" required=""></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><input type="email" name="email" id="" autocomplete="off" pattern="[^ @]*@[^ @]*" placeholder="example@gmail.com" required=""></td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td><textarea name="address" id="" cols="30" rows="4" placeholder="Enter full address" autocomplete="off" required=""></textarea></td>
+        </tr>
+        <tr>
+            <td>District</td>
+            <td>
+                <select name="sel_district"  type="text" id="sel_dist" required="">
+                    <option value="">---SELECT---</option>
+                    {% for i in district %}
+                    <option value="{{i.id}}">{{i.district_name}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Place</td>
+            <td>
+                <select name="sel_place" id="sel_plc">
+                    <option value="">---SELECT---</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>
+                <input type="radio" name="gender" id="" value="Male">Male
+                <input type="radio" name="gender" id="" value="Female">Female
+                <input type="radio" name="gender" id="" value="Others">Others
+            </td>
+        </tr>
+        <tr>
+            <td>Photo</td>
+            <td>
+                <input type="file" name="photo" id="">
+            </td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td>
+                <input type="password" name="passwd" id="">
+            </td>
+        </tr>
+        <tr>
+            <td>Confirm Password</td>
+            <td>
+                <input type="password" name="cpasswd" id="">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="submit" name="btnSave" value="SAVE">
+                <input type="reset" name="btnCancel" value="CANCEL">
+            </td>
+        </tr>
+    </table>
+        
+    </form>
+</body>
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $("#sel_dist").change(function () {
+            var did = $(this).val();
+            var ur = $("#UserForm").attr("data-places-url");
+            $.ajax({
+                url: ur,
+                data: { DIST: did, },
+                success: function (data) {
+                    $("#sel_plc").html(data);
+                },
+            });
+        });
+</script>
+
+
+<script>
+    {% if msg %}
+    alert("{{msg}}");
+    {% endif %}
+</script>

@@ -1,0 +1,36 @@
+
+{% for i,j in page_obj %}
+<div class="col-xl-4 col-lg-4 col-md-6">
+    <div class="single-place mb-30">
+        <div class="place-img">
+            <a href="{% url 'User:viewdetails' i.id %}"><img src="{{i.package_cover.url}}" alt=""></a>
+        </div>
+        <div class="place-cap">
+            <div class="place-cap-top">
+
+                {% for k in ar %} {% if k <= j %}
+                <i class="fas fa-star text-warning"></i>
+                {% else %}
+                <i class="fas fa-star star-light"></i>
+                {% endif %} {% endfor %}
+                
+                <h3><a href="{% url 'User:viewdetails' i.id %}">{{i.package_name}}</a></h3>
+                <p class="dolor">{{i.package_price}} <span> For {{i.package_persons}}
+                        People</span>&nbsp;&nbsp;
+                    <span><i class="fa fa-bus" aria-hidden="true"></i></span><span><a
+                            href="{% url 'User:viewagencyprofile' i.agency.id %}"
+                            style="color: black;">{{i.agency.agency_name}}</a></span>
+                </p>
+                <span><p>Free cancellation before 10 days</p></span>
+            </div>
+            <div class="place-cap-bottom">
+                <ul>
+                    <li><i class="far fa-clock"></i>{{i.package_days}}D {{i.package_nights}}N
+                    </li>
+                    <li><i class="fas fa-map-marker-alt"></i>{{i.package_locations}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}

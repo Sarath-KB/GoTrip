@@ -1,0 +1,26 @@
+{% extends 'Admin/Head.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'Agency/assets/css/tablestyle.css' %}">
+</head>
+<br><br><center><h2>Complaints from registered users</h2></center><br><br>
+<table border="1" align="center" class="booking-table">
+    <tr>
+        <th>Sl No.</th>
+        <th>Name</th>
+        <th>Complaint Title</th>
+        <th>Complaint</th>
+        <th>Date of Complaint send</th>
+    </tr>
+    {% for i in DATA %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.user.user_name}}</td>
+        <td>{{i.complaint_title}}</td>
+        <td>{{i.complaint_content}}</td>
+        <td>{{i.complaint_date}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}

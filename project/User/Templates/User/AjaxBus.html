@@ -1,0 +1,26 @@
+<div id="data">
+    <table  align="center" cellspacing="30"  id="result">
+        <tr>
+            {% for i in BUS %}
+
+            <td>
+                <div style="text-align:center;border:1px solid black;margin:22px;padding: 10px;">
+
+                    <p>
+                        <img src="{{i.bus_image.url}}" width="150px" height="150px">
+                    </p>   
+                    <p>{{i.bus_regno}}</p>
+                    <p>{{i.agency.agency_name}}</p>
+                    <p>{{i.bus_type}}</p> 
+                    <p><b>Capacity:</b>{{i.bus_seatcapacity}}</p>      
+                    <p>Rate:{{i.bus_rate}}</p> 
+                    <a href="{% url 'User:bookbus' i.id %}">Book</a>  
+                </div>
+            </td>
+            {% if forloop.counter|divisibleby:4 %}
+        </tr>
+        <tr>
+            {% endif %}
+            {% endfor %}
+    </table>
+</div>

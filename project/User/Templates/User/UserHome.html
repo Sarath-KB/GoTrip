@@ -1,0 +1,284 @@
+{% load static %}
+
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Voyage.com</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'Main/assets/img/favicon.ico' %}">
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'Main/assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'Main/assets/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'Main/assets/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'Main/assets/css/slicknav.css' %}">
+    <link rel="stylesheet" href="{% static 'Main/assets/css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'Main/assets/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'Main/assets/css/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'Main/assets/css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'Main/assets/css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'Main/assets/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'Main/assets/css/style.css' %}">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,100,1,0" />
+</head>
+
+<body>
+    <!-- Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{% static 'Main/assets/img/logo/logo.png ' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader Start -->
+    <header>
+        <!-- Header Start -->
+        <div class="header-area">
+            <div class="main-header ">
+                <div class="header-top top-bg d-none d-lg-block">
+                    <div class="container">
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-lg-8">
+                                <div class="header-info-left">
+                                    <ul>
+                                        <li>voyagecom30@gmail.com</li>
+                                        <li>8943709653</li>
+                                        <li>Muvattupuzha</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            {% for i in Chat %}
+                            <div class="col-lg-4">
+                                <div class="header-info-right f-right">
+                                    <ul class="header-social">
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" id="messagesDropdown"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-comment" aria-hidden="true"></i>
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="messagesDropdown">
+                                                <!-- Add your recent messages here -->
+                                                <a class="dropdown-item text-dark" href="{% url 'User:Chat-user' i.from_agency.id %}"><span style="font-size:large;color: black;">{{i.from_agency.agency_name}}</span> <span style="font-size:large;font-style: italic;color: black;">{{i.content}}</span></a>
+                                                <a class="dropdown-item text-dark" href="#"></a>
+                                                <a class="dropdown-item text-dark" href="#"></a>
+                                            </div>
+                                        </li>
+                                        <li><a href="{% url 'User:logout' %}"><i class="fa fa-power-off"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="header-bottom  header-sticky">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <!-- Logo -->
+                            <div class="col-xl-2 col-lg-2 col-md-1">
+                                <div class="logo">
+                                    <a href="index.html"><img src="{% static 'Main/assets/img/logo/logo.png' %}"
+                                            alt=""></a>
+                                </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10 col-md-10">
+                                <!-- Main-menu -->
+                                <div class="main-menu f-right d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">
+                                            <li><a href="{% url 'User:userhome' %}">Home</a></li>
+                                            <li><a href="{% url 'User:about' %}">About US</a></li>
+
+                                            <li><a>Packages</a>
+                                                <ul class="submenu">
+                                                    <li><a href="{% url 'User:searchpackages' %}">View Packages</a></li>
+                                                    <li><a href="{% url 'User:searchbus' %}">View Buses</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a>Bookings</a>
+                                                <ul class="submenu">
+                                                    <li><a href="{% url 'User:viewbookingstatus' %}">Package
+                                                            Bookings</a></li>
+                                                    <li><a href="{% url 'User:viewbusbookingstatus' %}">Bus Bookings</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'User:myhistory' %}">History</a></li>
+                                            <li><a href="{% url 'User:contact' %}">Contact Us</a< /li>
+                                            <li><a>My Profile</a>
+                                                <ul class="submenu">
+                                                    <li><a href="{% url 'User:userprofile' %}">View Profile</a></li>
+                                                    <li><a href="{% url 'User:editprofile' %}">Edit Profile</a></li>
+                                                    <li><a href="{% url 'User:changepasswd' %}">Change Password</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+
+    <!--Header End-->
+
+
+
+    <!--Content start-->
+    <main>
+
+        <!-- slider Area Start-->
+        <div class="slider-area ">
+            <!-- Mobile Menu -->
+            <div class="slider-active">
+                <div class="single-slider hero-overly  slider-height d-flex align-items-center"
+                    data-background="{% static 'Main/assets/img/hero/h1_hero.jpg' %}">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-9 col-lg-9 col-md-9">
+                                <div class="hero__caption">
+                                    <h1>Find your <span>Next tour!</span> </h1>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- slider Area End-->
+        <!-- Our Services Start -->
+
+        <!-- Our Services End -->
+        <!-- Favourite Places Start -->
+       
+        <!-- Favourite Places End -->
+        <!-- Support Company Start-->
+       
+        <!-- Support Company End-->
+        <!-- Testimonial Start -->
+        <!-- Testimonial Start -->
+        <div class="testimonial-area testimonial-padding"
+            data-background="{% static 'Main/assets/img/testmonial/testimonial_bg.jpg' %}">
+            <div class="container ">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-xl-11 col-lg-11 col-md-9">
+                        <div class="h1-testimonial-active">
+                            <!-- Single Testimonial -->
+                            <div class="single-testimonial text-center">
+                                <!-- Testimonial Content -->
+                                <div class="testimonial-caption ">
+                                    <div class="testimonial-top-cap">
+                                        <img src="{% static 'Main/assets/img/icon/testimonial.png' %}" alt="">
+                                        <p>Voayge.com is a destination for your travel experiences.Connect with us and
+                                            enjoy or beautiful days</p>
+                                    </div>
+                                    <!-- founder -->
+                                    <div class="testimonial-founder d-flex align-items-center justify-content-center">
+                                        <div class="founder-img">
+                                            <img src="{% static 'Main/assets/img/testmonial/Homepage_testi.png' %}"
+                                                alt="">
+                                        </div>
+                                        <div class="founder-text">
+                                            <span>Amal K S</span>
+                                            <p>Founder</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Single Testimonial -->
+                            <div class="single-testimonial text-center">
+                                <!-- Testimonial Content -->
+                                <div class="testimonial-caption ">
+                                    <div class="testimonial-top-cap">
+                                        <img src="{% static 'Main/assets/img/icon/testimonial.png' %}" alt="">
+                                        <p>Logisti Group is a representative logistics operator providing full range of
+                                            ser
+                                            of customs clearance and transportation worl.</p>
+                                    </div>
+                                    <!-- founder -->
+                                    <div class="testimonial-founder d-flex align-items-center justify-content-center">
+                                        <div class="founder-img">
+                                            <img src="{% static 'Main/assets/img/testmonial/Homepage_testi.png' %}"
+                                                alt="">
+                                        </div>
+                                        <div class="founder-text">
+                                            <span>Jessya Inn</span>
+                                            <p>Co Founder</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Testimonial End -->
+        <!-- Blog Area Start -->
+
+
+    </main>
+
+
+    <!--Footer start-->
+
+
+    <!-- JS here -->
+
+    <!-- All JS Custom Plugins Link Here here -->
+    <script src="{% static 'Main/assets/js/vendor/modernizr-3.5.0.min.js' %}"></script>
+
+    <!-- Jquery, Popper, Bootstrap -->
+    <script src="{% static 'Main/assets/js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'Main/assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'Main/assets/js/bootstrap.min.js' %}"></script>
+    <!-- Jquery Mobile Menu -->
+    <script src="{% static 'Main/assets/js/jquery.slicknav.min.js' %}"></script>
+
+    <!-- Jquery Slick , Owl-Carousel Plugins -->
+    <script src="{% static 'Main/assets/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'Main/assets/js/slick.min.js' %}"></script>
+    <!-- One Page, Animated-HeadLin -->
+    <script src="{% static 'Main/assets/js/wow.min.js' %}"></script>
+    <script src="{% static 'Main/assets/js/animated.headline.js' %}"></script>
+    <script src="{% static 'Main/assets/js/jquery.magnific-popup.js' %}"></script>
+
+    <!-- Scrollup, nice-select, sticky -->
+    <script src="{% static 'Main/assets/js/jquery.scrollUp.min.js' %}"></script>
+    <script src="{% static 'Main/assets/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'Main/assets/js/jquery.sticky.js' %}"></script>
+
+    <!-- contact js -->
+    <script src="{% static 'Main/assets/js/contact.js' %}"></script>
+    <script src="{% static 'Main/assets/js/jquery.form.js' %}"></script>
+    <script src="{% static 'Main/assets/js/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'Main/assets/js/mail-script.js' %}"></script>
+    <script src="{% static 'Main/assets/js/jquery.ajaxchimp.min.js' %}"></script>
+
+    <!-- Jquery Plugins, main Jquery -->
+    <script src="{% static 'Main/assets/js/plugins.js' %}"></script>
+    <script src="{% static 'Main/assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

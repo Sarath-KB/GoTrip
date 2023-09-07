@@ -1,0 +1,337 @@
+{% load static %}
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Voyage.com</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="manifest" href="site.webmanifest">
+		<link rel="shortcut icon" type="image/x-icon" href="{% static 'Main/assets/img/favicon.ico' %}">
+
+		<!-- CSS here -->
+            <link rel="stylesheet" href="{% static 'Main/assets/css/bootstrap.min.css' %}">
+            <link rel="stylesheet" href="{% static 'Main/assets/css/owl.carousel.min.css' %}">
+            <link rel="stylesheet" href="{% static 'Main/assets/css/flaticon.css' %}">
+            <link rel="stylesheet" href="{% static 'Main/assets/css/slicknav.css' %}">
+            <link rel="stylesheet" href="{% static 'Main/assets/css/animate.min.css' %}">
+            <link rel="stylesheet" href="{% static 'Main/assets/css/magnific-popup.css' %}">
+            <link rel="stylesheet" href="{% static 'Main/assets/css/fontawesome-all.min.css' %}">
+            <link rel="stylesheet" href="{% static 'Main/assets/css/themify-icons.css' %}">
+            <link rel="stylesheet" href="{% static 'Main/assets/css/slick.css' %}">
+            <link rel="stylesheet" href="{% static 'Main/assets/css/nice-select.css' %}">
+            <link rel="stylesheet" href="{% static 'Main/assets/css/style.css' %}">
+
+
+
+            <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
+			<!--
+			CSS
+			============================================= -->
+			<link rel="stylesheet" href="{% static 'Packages/css/linearicons.css' %}">
+			<link rel="stylesheet" href="{% static 'Packages/css/font-awesome.min.css' %}">
+			<link rel="stylesheet" href="{% static 'Packages/css/bootstrap.css' %}">
+			<link rel="stylesheet" href="{% static 'Packages/css/magnific-popup.css' %}">
+			<link rel="stylesheet" href="{% static 'Packages/css/jquery-ui.css' %}">				
+			<link rel="stylesheet" href="{% static 'Packages/css/nice-select.css' %}">							
+			<link rel="stylesheet" href="{% static 'Packages/css/animate.min.css' %}">
+			<link rel="stylesheet" href="{% static 'Packages/css/owl.carousel.css' %}">				
+			<link rel="stylesheet" href="{% static 'Packages/css/main.css' %}">
+            <style>
+                .popup {
+                    display: none;
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    padding: 20px;
+                    background-color: white;
+                    border: 1px solid black;
+                    z-index: 9999;
+                }
+            
+                .overlay {
+                    display: none;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    z-index: 9998;
+                }
+            </style>
+   </head>
+
+   <body>
+    <!-- Preloader Start -->
+    <!-- <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{% static 'Main/assets/img/logo/logo.png ' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- Preloader Start -->
+    <header>
+        <!-- Header Start -->
+       <div class="header-area">
+            <div class="main-header ">
+                <div class="header-top top-bg d-none d-lg-block">
+                   <div class="container">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-lg-8">
+                            <div class="header-info-left">
+                                <ul>                          
+                                    <li>voyagecom30@gmail.com</li>
+                                    <li>8943709653</li>
+                                    <li>Muvattupuzha</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="header-info-right f-right">
+                                <ul class="header-social">    
+                                    <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                    <li><a href="https://www.instagram.com/amal_.ks/?igshid=NGExMmI2YTkyZg%3D%3D"><i class="fab fa-facebook-f"></i></a></li>
+                                   <li> <a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+                                   <li><a href="{% url 'User:logout' %}"><i class="fa fa-power-off"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                       </div>
+                   </div>
+                </div>
+               <div class="header-bottom  header-sticky">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <!-- Logo -->
+                            <div class="col-xl-2 col-lg-2 col-md-1">
+                                <div class="logo">
+                                  <a href="index.html"><img src="{% static 'Main/assets/img/logo/logo.png' %}" alt=""></a>
+                                </div>
+                            </div>
+                            <div class="col-xl-10 col-lg-10 col-md-10">
+                                <!-- Main-menu -->
+                                <div class="main-menu f-right d-none d-lg-block">
+                                    <nav>               
+                                        <ul id="navigation">                                                                                                                                     
+                                            <li><a href="{% url 'User:userhome' %}">Home</a></li>
+                                            <li><a href="{% url 'User:about' %}">About US</a></li>
+                                            
+                                            <li><a>Packages</a>
+                                                <ul class="submenu">
+                                                    <li><a href="{% url 'User:searchpackages' %}">View Packages</a></li>
+                                                    <li><a href="{% url 'User:searchbus' %}">View Buses</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a>Bookings</a>
+                                                <ul class="submenu">
+                                                    <li><a href="{% url 'User:viewbookingstatus' %}">Package Bookings</a></li>
+                                                    <li><a href="{% url 'User:viewbusbookingstatus' %}">Bus Bookings</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="{% url 'User:myhistory' %}">History</a></li>
+                                            <li><a href="{% url 'User:contact' %}">Contact Us</a</li>
+                                            <li><a>My Profile</a>
+                                                <ul class="submenu">
+                                                    <li><a href="{% url 'User:userprofile' %}">View Profile</a></li>
+                                                    <li><a href="{% url 'User:editprofile' %}">Edit Profile</a></li>
+                                                    <li><a href="{% url 'User:changepasswd' %}">Change Password</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <!-- Mobile Menu -->
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+            </div>
+       </div>
+        <!-- Header End -->
+    </header>
+          
+       
+        
+
+        <!-- Start destinations Area -->
+        <section class="destinations-area section-gap">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="menu-content pb-40 col-lg-8">
+                        <div class="title text-center">
+                            <h1 class="mb-10">Travel Buses</h1>
+                            
+                        </div>
+                    </div>
+                </div>		
+                	
+                <div class="row">
+                    {% for i in BUS %}
+
+                    <div class="col-lg-4">
+                        <div class="single-destinations">
+                            <div class="thumb">
+                                <img src="{{i.bus_image.url}}" alt="" height="200px" width="100px">
+                            </div>
+                            <div class="details">
+                                <h4>{{i.agency.agency_name}}</h4>
+                                <p>
+                                    {{i.agency.place.place_name}}
+                                </p>
+                                <p>
+                                   Ph: {{i.agency.agency_contact}}
+                                </p>
+                                <ul class="package-list">
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Type</span>
+                                        <span>{{i.bus_type}}</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Seat Capacity</span>
+                                        <span>{{i.bus_seatcapacity}}</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>District</span>
+                                        <span>{{i.agency.place.district.district_name}}</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Extras</span>
+                                        <span>All Inclusive</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span></span>
+                                        <span>
+                                            <button class="price-btn" onclick="showPopup({{i.id}})">Book Now</button>
+                                            
+                                        </span><span></span>
+                                    </li>													
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                    <div id="popup" class="popup">
+                        <div class="bus-book-form" id="bus-book-form">
+                            <form method="post" data-url="{% url 'User:bookbus' %}" id="SearchBus">		
+                                {% csrf_token %}	
+</form>
+                        </div> 
+                    </div>
+                    <div id="overlay" class="overlay"></div>
+                    
+                    
+                  																														
+                </div>
+            </div>	
+        </section>
+        <!-- End destinations Area -->
+        
+
+
+        <!-- start footer Area -->		
+        
+       
+        <script>
+            // Function to show the pop-up box and overlay
+            function showPopup(id) {
+                //alert(id);
+                var popup = document.getElementById("popup");
+                var overlay = document.getElementById("overlay");
+                var ur = $("#SearchBus").attr("data-url");
+                $.ajax({
+                    url: ur,
+                    data: { ID: id, },
+                    success: function (data) {
+                        $("#bus-book-form").html(data);
+                    },
+                });
+                popup.style.display = "block";
+                overlay.style.display = "block";
+            }
+        
+            // Function to hide the pop-up box and overlay
+            function hidePopup() {
+                var popup = document.getElementById("popup");
+                var overlay = document.getElementById("overlay");
+                popup.style.display = "none";
+                overlay.style.display = "none";
+                window.location="../../user/searchbus/"
+            }
+        
+            // Add a click event listener to the button
+            //document.getElementById("popup-button").addEventListener("click", showPopup);
+        
+            // Add a click event listener to the overlay to close the pop-up
+            document.getElementById("overlay").addEventListener("click", hidePopup);
+        </script>
+        
+
+        <script src="{% static 'Packages/js/vendor/jquery-2.2.4.min.js' %}"></script>
+        <script src="{% static 'Packages/js/popper.min.js' %}"></script>
+        <script src="{% static 'Packages/js/vendor/bootstrap.min.js' %}"></script>			
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>		
+         <script src="{% static 'Packages/js/jquery-ui.js' %}"></script>					
+          <script src="{% static 'Packages/js/easing.min.js' %}"></script>			
+        <script src="{% static 'Packages/js/hoverIntent.js' %}"></script>
+        <script src="{% static 'Packages/js/superfish.min.js' %}"></script>	
+        <script src="{% static 'Packages/js/jquery.ajaxchimp.min.js' %}"></script>
+        <script src="{% static 'Packages/js/jquery.magnific-popup.min.js' %}"></script>						
+        <script src="{% static 'Packages/js/jquery.nice-select.min.js' %}"></script>					
+        <script src="{% static 'Packages/js/owl.carousel.min.js' %}"></script>							
+        <script src="{% static 'Packages/js/mail-script.js' %}"></script>	
+        <script src="{% static 'Packages/js/main.js' %}"></script>	
+
+
+
+
+
+        <!-- JS here -->
+	
+		<!-- All JS Custom Plugins Link Here here -->
+        <script src="{% static 'Main/assets/js/vendor/modernizr-3.5.0.min.js' %}"></script>
+		
+		<!-- Jquery, Popper, Bootstrap -->
+		<script src="{% static 'Main/assets/js/vendor/jquery-1.12.4.min.js' %}"></script>
+        <script src="{% static 'Main/assets/js/popper.min.js' %}"></script>
+        <script src="{% static 'Main/assets/js/bootstrap.min.js' %}"></script>
+	    <!-- Jquery Mobile Menu -->
+        <script src="{% static 'Main/assets/js/jquery.slicknav.min.js' %}"></script>
+
+		<!-- Jquery Slick , Owl-Carousel Plugins -->
+        <script src="{% static 'Main/assets/js/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'Main/assets/js/slick.min.js' %}"></script>
+		<!-- One Page, Animated-HeadLin -->
+        <script src="{% static 'Main/assets/js/wow.min.js' %}"></script>
+		<script src="{% static 'Main/assets/js/animated.headline.js' %}"></script>
+        <script src="{% static 'Main/assets/js/jquery.magnific-popup.js' %}"></script>
+
+		<!-- Scrollup, nice-select, sticky -->
+        <script src="{% static 'Main/assets/js/jquery.scrollUp.min.js' %}"></script>
+        <script src="{% static 'Main/assets/js/jquery.nice-select.min.js' %}"></script>
+		<script src="{% static 'Main/assets/js/jquery.sticky.js' %}"></script>
+        
+        <!-- contact js -->
+        <script src="{% static 'Main/assets/js/contact.js' %}"></script>
+        <script src="{% static 'Main/assets/js/jquery.form.js' %}"></script>
+        <script src="{% static 'Main/assets/js/jquery.validate.min.js' %}"></script>
+        <script src="{% static 'Main/assets/js/mail-script.js' %}"></script>
+        <script src="{% static 'Main/assets/js/jquery.ajaxchimp.min.js' %}"></script>
+        
+		<!-- Jquery Plugins, main Jquery -->	
+        <script src="{% static 'Main/assets/js/plugins.js' %}"></script>
+        <script src="{% static 'Main/assets/js/main.js' %}"></script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+{% extends 'User/Head.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'Agency/assets/css/tablestyle.css' %}">
+</head>
+    <h1 align="center">My Bus Bookings</h1><br>
+    <table border="1" align="center"class="booking-table" >
+        <tr>
+            <th>Bus Regno</th>
+            <th>From and To</th>
+            <th>Duration</th>
+            <th width="100px">Bus Type & Capacity</th>
+            <th>Passengers</th>
+            <th>Agency Name</th>
+            <th>Agency Contact</th>
+            <th>Total Amount</th>
+            <th>Booking Amount</th>
+            <th>Booking Date</th>
+            <th>Action</th>
+        </tr>
+        {% for i in DATA %}
+        <tr>
+            <td>{{i.bus.bus_regno}}</td>
+            <td>{{i.from_loc}} to {{i.to_loc}}</td>
+            <td>{{i.start_date}}-{{i.end_date}}</td>
+            <td>{{i.bus.bus_type}}/{{i.bus.bus_seatcapacity}}Persons</td>
+            <td>{{i.passengers}}</td>
+            <td>{{i.bus.agency.agency_name}}</td>
+            <td>{{i.bus.agency.agency_contact}}</td>
+            <td>{{i.btotal_amount}}</td>
+            <td>{{i.bbooking_amount}}</td>
+            <td>{{i.bbooking_date}}</td>
+            <td>{% if i.bbooking_status == 1 %}
+                <p>Approved</p>
+                <p><a href="{% url 'User:paymentbus' i.id %}" style="color: blue;">Pay Now</a></p>
+                {% elif i.bbooking_status == 2 %}
+                <p>rejected</p> 
+                {% elif i.bbooking_status == 3 %}
+                <p>Paid</p>
+                {% elif i.bbooking_status == 4 %}
+                <p>Completed</p>
+                {% else %}
+                <p>Pending</p>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+<br><br><br><br><br><br>
+
+{% endblock %}

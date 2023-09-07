@@ -1,0 +1,240 @@
+{% extends 'User/Head.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+    <style>
+        .pagination {
+            margin: 0 auto;
+            /* Set left and right margin to "auto" */
+            width: 10%;
+        }
+
+        .place-padding {
+    padding-top: 30px;
+    padding-bottom: 70px;
+}
+input[type=text],[type=password],[type=email],[type=date], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #110242;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+textarea{
+    padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #110242;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+input[type=submit] {
+  width: 100px;
+  background-color: #110242;
+  color: white;
+  padding:  15px;
+  margin: 4px 0;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+input[type=reset] {
+  width: 20%;
+  background-color: #110242;
+  color: white;
+  padding: 15px;
+  margin: 4px 0;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+input[type=submit]:hover {
+  background-color: #110242;
+}
+input[type=reset]:hover {
+  background-color: #110242;
+}
+    </style>
+
+<script src=  
+"https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">  
+    </script>  
+    
+    <script src=  
+"https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">  
+    </script>  
+    
+    <link href=  
+"http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+        rel="stylesheet" type="text/css" />  
+
+</head>
+
+
+<main>
+    <!-- slider Area Start-->
+    <div class="slider-area ">
+        <!-- Mobile Menu -->
+        <div class="single-slider slider-height2 d-flex align-items-center"
+            data-background="{% static 'Main/assets/img/hero/contact_hero.jpg' %}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>Our Packages</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- slider Area End-->
+
+    <!-- Favourite Places Start -->
+    <div class="favourite-place place-padding">
+        <div class="container">
+            <!-- Section Tittle -->
+
+            <form action="" method="post" id="SearchPackage" data-url="{% url 'User:AjaxPackage' %}">
+                {% csrf_token %}
+                <table align="center">
+                    <tr>
+                        <td><input type="text" name="search" id="search" placeholder="Enter destination,agency name" required="" autocomplete="off"></td>
+                        <td><input type="submit" value="Search"></td>
+                    </tr>
+                </table>
+                <div>
+                    <p></p><p></p><p></p>
+                    <h1></h1>
+                </div>
+                <div class="row">
+                    {% for i,j in page_objj %}
+                    <div class="col-xl-4 col-lg-4 col-md-6">
+                        <div class="single-place mb-30">
+                            <div class="place-img">
+                                <a href="{% url 'User:viewdetails' i.id %}"><img src="{{i.package_cover.url}}" alt=""></a>
+                            </div>
+                            <div class="place-cap">
+                                <div class="place-cap-top">
+                                    
+                                        {% for k in ar %} {% if k <= j %}
+                                        <i class="fas fa-star text-warning"></i>
+                                        {% else %}
+                                        <i class="fas fa-star star-light"></i>
+                                        {% endif %} {% endfor %}
+                                        
+                                    <h3><a href="{% url 'User:viewdetails' i.id %}">{{i.package_name}}</a></h3>
+                                    <p class="dolor">{{i.package_price}} <span> For {{i.package_persons}}
+                                            People</span>&nbsp;&nbsp;
+                                        <span><i class="fa fa-bus" aria-hidden="true"></i></span><span><a
+                                                href="{% url 'User:viewagencyprofile' i.agency.id %}"
+                                                style="color: black;">{{i.agency.agency_name}}</a></span>
+                                    </p>
+                                    <span><p>Free cancellation before 10 days</p></span>
+                                </div>
+                                <div class="place-cap-bottom">
+                                    <ul>
+                                        <li><i class="far fa-clock"></i>{{i.package_days}}D {{i.package_nights}}N
+                                        </li>
+                                        <li><i class="fas fa-map-marker-alt"></i>{{i.package_locations}}</li>
+                                    </ul>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </form>
+            <div class="pagination">
+                
+                {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}"><b style="color: blue;">Previous</b></a>
+                {% endif %}
+
+                <span class="current-page">&nbsp;&nbsp;&nbsp;&nbsp;{{ page_obj.number }}</span>
+
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="color: blue">Next</b></a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!-- Favourite Places End -->
+</main>
+
+
+
+<!-- JS here -->
+
+<!-- All JS Custom Plugins Link Here here -->
+<script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+
+<!-- Jquery, Popper, Bootstrap -->
+<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="./assets/js/popper.min.js"></script>
+<script src="./assets/js/bootstrap.min.js"></script>
+<!-- Jquery Mobile Menu -->
+<script src="./assets/js/jquery.slicknav.min.js"></script>
+
+<!-- Jquery Slick , Owl-Carousel Plugins -->
+<script src="./assets/js/owl.carousel.min.js"></script>
+<script src="./assets/js/slick.min.js"></script>
+<!-- One Page, Animated-HeadLin -->
+<script src="./assets/js/wow.min.js"></script>
+<script src="./assets/js/animated.headline.js"></script>
+<script src="./assets/js/jquery.magnific-popup.js"></script>
+
+<!-- Scrollup, nice-select, sticky -->
+<script src="./assets/js/jquery.scrollUp.min.js"></script>
+<script src="./assets/js/jquery.nice-select.min.js"></script>
+<script src="./assets/js/jquery.sticky.js"></script>
+
+<!-- contact js -->
+<script src="./assets/js/contact.js"></script>
+<script src="./assets/js/jquery.form.js"></script>
+<script src="./assets/js/jquery.validate.min.js"></script>
+<script src="./assets/js/mail-script.js"></script>
+<script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+
+<!-- Jquery Plugins, main Jquery -->
+<script src="./assets/js/plugins.js"></script>
+<script src="./assets/js/main.js"></script>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+    $("#district").change(function () {
+        var did = $(this).val();
+        var ur = $("#SearchPackage").attr("data-url");
+            $.ajax({
+                url: ur,
+                data: { DIS: did },
+                success: function (data) {
+                $("#data").html(data);
+            },
+        });
+    });
+    </script>
+<script>
+    $(function () {
+        var availableTags = [
+            {% for i in page_obj %}
+              "{{i.package_locations}}",
+        {% endfor %}
+      ];
+    $("#search").autocomplete({
+        source: availableTags
+    });
+    } );
+</script>
+
+
+
+{% endblock %}
